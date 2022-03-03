@@ -47,7 +47,7 @@ public class IdGenerator {
 
         input.close();
     }
-
+        // halohalo
     /*
      * Method buildMapCodeToNumber adalah method untuk membuat mapping reference numbers Code 93
      */
