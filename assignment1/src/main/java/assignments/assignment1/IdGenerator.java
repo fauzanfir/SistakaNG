@@ -2,7 +2,6 @@ package assignments.assignment1;
 
 import java.util.HashMap;
 import java.util.Scanner;
-import java.lang.Object;
 
 public class IdGenerator {
     static HashMap<Character, Integer> charToValue = new HashMap<>(36);
@@ -130,8 +129,12 @@ public class IdGenerator {
      * Parameter dan return type dari method ini tidak boleh diganti
      */
     public static boolean checkValidity(String idAnggota) {
+
         for (int i = 0; i < idAnggota.length(); i++){
-            if (!Character.isUpperCase(idAnggota.charAt(i)) ||      // Jika huruf pada input ada yang tidak kapital,
+            if ((idAnggota.charAt(i) < 'A' && 
+                idAnggota.charAt(i) > 'Z') ||  
+                (idAnggota.charAt(i) < '0' &&
+                idAnggota.charAt(i) > '9') ||    // Jika huruf pada input ada yang tidak kapital, atau bukan angka
                 idAnggota.length() != 13){                          // atau panjang ID tidak 13
                 return false;
             }
