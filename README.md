@@ -9,6 +9,7 @@ Semester Genap 2021/2022
 
 1. Soal Tugas Pemrograman
    * [Tugas Pemrograman 1][tp1]
+   * [Tugas Pemrograman 2][tp2]
 2. [Latihan Tugas Pemrograman](#latihan-tugas-pemrograman)
 3. [Memulai](#memulai)
 4. [Mengerjakan Tugas Pemrograman](#mengerjakan-tugas-pemrograman)
@@ -182,3 +183,4 @@ yang telah dijelaskan dalam perkuliahan.
 [lisensi-bsd]: LICENSE
 [lisensi-cc]: https://creativecommons.org/licenses/by-sa/4.0
 [tp1]: assignment1/README.md
+[tp2]: assignment2/README.md
