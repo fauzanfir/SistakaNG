@@ -394,6 +394,14 @@ public class Library {
                                 members[i+1] = temp;
                                 cek = true;
                             }
+                            else if(members[i].getPoint() == members[i+1].getPoint()){
+                                if(members[i].getName().charAt(0) > members[i+1].getName().charAt(0)){
+                                    Member temp = members[i];
+                                    members[i] = members[i+1];
+                                    members[i+1] = temp;
+                                    cek = true;
+                                }
+                            }
                         }
                     }
 
