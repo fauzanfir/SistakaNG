@@ -199,7 +199,7 @@ public class Library {
                 }
                 else{
                     for(Book buku : books){     // Jika ada buku yang sesuai
-                        if(buku.equals(namaBuku)){
+                        if(buku.getName().equals(namaBuku)){
                             adaBuku = true;
                             book = buku;
                             break;
@@ -275,7 +275,7 @@ public class Library {
                 }
                 else{
                     for(Book buku : books){
-                        if(buku.equals(namaBuku)){
+                        if(buku.getName().equals(namaBuku)){
                             adaBuku = true;
                             book = buku;
                             break;
@@ -291,7 +291,7 @@ public class Library {
                             lagiPinjam = false;
                             break;
                         }
-                        if(bukuPinjam.getBook().equals(namaBuku)){      // Jika buku sedang dipinjam
+                        if(bukuPinjam.getBook().getName().equals(namaBuku)){      // Jika buku sedang dipinjam
                             lagiPinjam = bukuPinjam.getStatus();
                         }
                     }
@@ -381,9 +381,21 @@ public class Library {
                 }
                 else{
                     System.out.println("---------- Peringkat Anggota ----------");
-                    Comparator<Member> byPoint = Comparator.comparing(Member::getPoint).reversed();
-                    Comparator<Member> byName = Comparator.comparing(Member::getName);
-                    Arrays.sort(members, byPoint.thenComparing(byName));
+                    //Comparator<Member> byPoint = Comparator.comparing(Member::getPoint).reversed();
+                    //Comparator<Member> byName = Comparator.comparing(Member::getName);
+                    //Arrays.sort(members, byPoint.thenComparing(byName));
+                    boolean cek = true;
+                    while(cek){
+                        cek = false;
+                        for(int i=0;i<members.length-1;i++){
+                            if(members[i].getPoint() < members[i+1].getPoint()){
+                                Member temp = members[i];
+                                members[i] = members[i+1];
+                                members[i+1] = temp;
+                                cek = true;
+                            }
+                        }
+                    }
 
                     int counter = 1;
                     for(Member member : members){

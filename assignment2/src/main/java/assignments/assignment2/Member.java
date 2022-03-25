@@ -65,7 +65,7 @@ public class Member {
                     temp[i] = bookLoans[i];
                 }
             }
-            temp[bookLoans.length-1] = bukuPinjam;
+            temp[bookLoans.length] = bukuPinjam;
             this.bookLoans = temp.clone();
             book.setStock(book.getStock()-1);       // Stock pada buku akan berkurang
         }
@@ -74,6 +74,7 @@ public class Member {
 
     // Membuat method untuk mengembalikan buku
     public void kembali(Book book, String returnDate){         // Menerima parameter Book dan String
+        this.point += book.getCategory().getPoint();         // Point setiap member akan bertambah sesuai dengan
         BookLoan buku = null;       // Menginisiasi buku
         for(int i=0;i<bookLoans.length;i++){
             if (bookLoans[i].getBook() == book){
@@ -94,7 +95,6 @@ public class Member {
                 this.fine += (jumlahHari - 7) * buku.getDendaHari();     // Menambahkan denda
             }
             buku.setFine(this.fine);
-            point += book.getCategory().getPoint();         // Point setiap member akan bertambah sesuai dengan
         }                                                   // point buku tersebut
         catch (ParseException exception){
             exception.printStackTrace();            // Untuk menghandle
@@ -110,6 +110,7 @@ public class Member {
         System.out.printf("\nDenda: %d", this.fine);
         System.out.println("\nRiwayat Peminjaman Buku :");
         int counter = 1;
+        boolean buku = true;
         for(BookLoan bukuPinjam : bookLoans){
             System.out.printf("—------------- %d —-------------", counter);
             System.out.printf("\nJudul Buku: %s", bukuPinjam.getBook());
