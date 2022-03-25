@@ -381,9 +381,9 @@ public class Library {
                 }
                 else{
                     System.out.println("---------- Peringkat Anggota ----------");
-                    //Comparator<Member> byPoint = Comparator.comparing(Member::getPoint).reversed();
-                    //Comparator<Member> byName = Comparator.comparing(Member::getName);
-                    //Arrays.sort(members, byPoint.thenComparing(byName));
+                    Comparator<Member> byPoint = Comparator.comparing(Member::getPoint).reversed();
+                    Comparator<Member> byName = Comparator.comparing(Member::getName);
+                    Arrays.sort(members, byPoint.thenComparing(byName));
 
                     int counter = 1;
                     for(Member member : members){

@@ -1,6 +1,6 @@
 package assignments.assignment2;
 
-// TODO
+// Membuat atribut pada class Buku
 public class Book {
     private String title;
     private String author;
@@ -10,7 +10,7 @@ public class Book {
 
     Book(){
     }
-
+    // Men-construct object Book
     public Book(String judul, String pengarang, String penerbit, Category kategori, int stok){
         this.title = judul;
         this.author = pengarang;
@@ -18,12 +18,12 @@ public class Book {
         this.category = kategori;
         this.stok = stok;
     }
-
+    // Membuat method setter dan getter sebutuhnya
+    public String getName(){
+        return this.title;
+    }
     public void setStock(int stock){
         this.stok = stock;
-    }
-    public String getTitle(){
-        return this.title;
     }
     public String getAuthor(){
         return this.author;
@@ -40,7 +40,6 @@ public class Book {
 
     @Override
     public String toString() {
-        // TODO
-        return "";
+        return this.title;
     }
 }

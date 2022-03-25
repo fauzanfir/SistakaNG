@@ -1,6 +1,5 @@
 package assignments.assignment2;
 
-// TODO
 public class Category {
     private String name;
     private int point;
@@ -22,7 +21,6 @@ public class Category {
 
     @Override
     public String toString() {
-        // TODO
-        return "";
+        return this.name;
     }
 }
