@@ -1,3 +1,4 @@
+// Mengimport class pada library java
 package assignments.assignment2;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -6,7 +7,6 @@ import java.util.Scanner;
 public class Library {
 
     private Scanner input = new Scanner(System.in);
-
     private Member[] members;
     private Book[] books;
     private Category[] categories;
@@ -15,7 +15,6 @@ public class Library {
         Library program = new Library();
         program.menu();
     }
-    //public addElem()
 
     public void menu(){
         int command = 0;
@@ -45,15 +44,15 @@ public class Library {
                 String angkatan = input.nextLine();
                 System.out.print("Tanggal Lahir (dd/mm/yyyy): ");
                 String tanggalLahir = input.nextLine();
-                String ID = IdGenerator.generateId(progStud, angkatan, tanggalLahir);
-                if (ID.length() == 13){
-                    Member member = new Member(nama, progStud, angkatan, tanggalLahir, ID);
-                    if (members == null){
+                String ID = IdGenerator.generateId(progStud, angkatan, tanggalLahir);   // Membuat ID member
+                if (ID.length() == 13){                
+                    Member member = new Member(nama, progStud, angkatan, tanggalLahir, ID); // Membuat object member
+                    if (members == null){           // Jika belum ada member terdaftar
                         members = new Member[1];
                         members[0] = member;
                     }
                     else{
-                        Member temp[] = new Member[members.length+1];
+                        Member temp[] = new Member[members.length+1];       // Menambahkan member
                         for(int i=0; i<members.length;i++){
                             temp[i] = members[i];
                         }
@@ -67,7 +66,7 @@ public class Library {
                     System.out.printf("\nDenda: %o\n", member.getFine());
                 }
                 else{
-                    System.out.print(ID);
+                    System.out.print(ID);       // Jika ID tidak benar, maka akan mengeluarkan handle pada generateId
                 }
                 
             } else if (command == 2) {
@@ -77,27 +76,27 @@ public class Library {
                 System.out.print("Point: ");
                 int point = input.nextInt();
                 input.nextLine();
-                Category ktg = new Category(nama, point);
-                if(categories == null){
+                Category ktg = new Category(nama, point);           // Membuat object kategori
+                if(categories == null){             // Jika belum ada kategori yang ditambahkan
                     categories = new Category[1];
                     categories[0] = ktg;
                     System.out.printf("Kategori %s dengan %d point berhasil ditambahkan\n",ktg.getName(), ktg.getPoint());
                 }
                 else{
-                    boolean ada = false;
+                    boolean ada = false;        // Inisiasi jika kategori belum pernah ditambahkan
                     for(Category kategori: categories){
                         if(kategori.getName().toLowerCase().equals(nama.toLowerCase())){
-                            ada = true;
+                            ada = true;         // Jika sudah ada kategori
                             System.out.printf("Kategori %s sudah pernah ditambahkan\n", kategori.getName());
                             break;
                         }
                     }
-                    if(!ada){
+                    if(!ada){           // Jika belum pernah ditambahkan
                         Category temp[] = new Category[categories.length+1];
                         for(int i=0; i<categories.length;i++){
                             temp[i] = categories[i];
                         }
-                        temp[members.length] = ktg;
+                        temp[categories.length] = ktg;
                         categories = temp.clone();
                     }
                 }
@@ -114,11 +113,11 @@ public class Library {
                 String namaKategori = input.nextLine();
                 boolean adaKat = false;
                 Category kategori = null;
-                if (categories == null){
-                    adaKat = false;
+                if (categories == null){        // Jika belum ada kategori yang didaftarkan
+                    adaKat = false;     
                 }
                 else{
-                    for(Category ktg : categories){
+                    for(Category ktg : categories){         // Jika kategori sesuai dengan yang diinput
                         if(ktg.getName().toLowerCase().equals(namaKategori.toLowerCase())){
                             adaKat = true;
                             kategori = ktg;
@@ -129,40 +128,41 @@ public class Library {
                 int stok = input.nextInt();
                 input.nextLine();
                 boolean adaBuku = false;
-                if(books == null){
+                if(books == null){              // Jika belum ada buku yang ditambahkan
                     books = new Book[1];
                 }
                 for(Book buku : books){
                     if(buku == null){
                         adaBuku = false;
                     }
-                    else if(buku.getTitle().toLowerCase().equals(judul.toLowerCase())){
-                        adaBuku = true;
+                    else if(buku.getName().toLowerCase().equals(judul.toLowerCase())){  
+                        adaBuku = true;                     // Jika buku sudah pernah didaftarkan
                     }
                 }
-                //Book buku = new Book(judul, penulis, penerbit, kategori, stok);
+
                 if (adaBuku){
                     System.out.printf("Buku %s oleh %s sudah pernah ditambahkan\n", judul, penulis);
                 }
                 else if(!adaKat){
                     System.out.printf("Kategori %s tidak ditemukan\n", namaKategori);
                 }
-                else if (stok==0){
+                else if (stok == 0){
                     System.out.println("Stok harus lebih dari 0\n");
                 }
-                else{
+                else{       // Jika buku belum ada, kategori sesuai, dan stok lebih dari 0
                     Book buku = new Book(judul, penulis, penerbit, kategori, stok);
-                    System.out.printf("Buku %s oleh %s berhasil ditambahkan\n", buku.getTitle(), buku.getAuthor());
+                    System.out.printf("Buku %s oleh %s berhasil ditambahkan\n", buku, buku.getAuthor());
+                    // Memasukkan buku pada list buku
                     if(books[0] == null){
-                        books[0] = buku;
-                    }
+                        books[0] = buku;        
+                    }   
                     else{
                         Book[] temp = new Book[books.length+1];
                         for(int i=0;i<books.length;i++){
                             temp[i] = books[i];
+                        }
                         temp[books.length] = buku;
                         books = temp.clone();
-                        }
                     }
                 }
 
@@ -176,6 +176,7 @@ public class Library {
                 String penerbit = input.nextLine();
                 System.out.print("Tanggal peminjaman: ");
                 String tanggal = input.nextLine();
+                // Menginisiasi untuk keterangan ada atau tidak
                 boolean adaID = false;
                 boolean adaBuku = false;
                 boolean sudahPinjam = false;
@@ -185,7 +186,7 @@ public class Library {
                     adaID = false;
                 }
                 else{
-                    for(Member member : members){
+                    for(Member member : members){       // Jika ada member yang sesuai
                         if(member.getID().equals(ID)){
                             adaID = true;
                             person = member;
@@ -193,29 +194,29 @@ public class Library {
                         }
                     }
                 }
-                if(books == null){
+                if(books == null){      
                     adaBuku = false;
                 }
                 else{
-                    for(Book buku : books){
-                        if(buku.getTitle().equals(namaBuku)){
+                    for(Book buku : books){     // Jika ada buku yang sesuai
+                        if(buku.equals(namaBuku)){
                             adaBuku = true;
                             book = buku;
                             break;
                         }
                     }
                 }
-                if(person == null || person.getPinjam() == null){
+                if(person == null || person.getPinjam() == null){     
                     sudahPinjam = false;
                 }
-                else{
+                else{           // Jika member sudah pernah meminjam
                     for(BookLoan bukuPinjam : person.getPinjam()){
                         if (bukuPinjam == null){
                             sudahPinjam = false;
                             break;
                         }
-                        if(bukuPinjam.getBook().getTitle().equals(namaBuku)){
-                            sudahPinjam = true;
+                        if(bukuPinjam.getBook().equals(namaBuku)){
+                            sudahPinjam = true;     // Jika buku yang dipinjam sedang dipinjam
                         }
                     }
                 }
@@ -226,7 +227,7 @@ public class Library {
                     System.out.printf("Buku %s oleh %s tidak ditemukan\n", namaBuku, penerbit);
                 }
                 else if(book.getStock() < 1){
-                    System.out.printf("Buku %s tidak %s\n", book.getTitle(), book.getAuthor());
+                    System.out.printf("Buku %s tidak %s\n", book, book.getAuthor());
                 }
                 else if(person.getPinjam().length == 3){
                     System.out.printf("Jumlah buku yang sedang dipinjam sudah mencapai batas maksimal\n");
@@ -235,11 +236,11 @@ public class Library {
                     System.out.printf("Denda lebih dari Rp 5000\n");
                 }
                 else if(sudahPinjam){
-                    System.out.printf("Buku %s oleh %s sedang dipinjam\n", book.getTitle(), book.getAuthor());
+                    System.out.printf("Buku %s oleh %s sedang dipinjam\n", book, book.getAuthor());
                 }
                 else{
-                    person.pinjam(book, tanggal);
-                    System.out.printf("%s berhasil meminjam Buku %s!\n", person.getName(), book.getTitle());
+                    person.pinjam(book, tanggal);       // Memanggil method untuk meminjam buku
+                    System.out.printf("%s berhasil meminjam Buku %s!\n", person, book);
                 }
 
             } else if (command == 5) {
@@ -257,24 +258,24 @@ public class Library {
                 boolean lagiPinjam = false;
                 Member person = null;
                 Book book = null;
-                if(members == null){
+                if(members == null){        // Jika belum ada member terdaftar
                     adaID = false;
                 }
                 else{
                     for(Member member : members){
                         if(member.getID().equals(ID)){
-                            adaID = true;
-                            person = member;
+                            adaID = true;       // Jika ID yang diinput sama dengan ID member
+                            person = member;        
                             break;
                         }
                     }
                 }
-                if(books == null){
+                if(books == null){          // Jika belum ada buku terdaftar
                     adaBuku = false;
                 }
                 else{
                     for(Book buku : books){
-                        if(buku.getTitle().equals(namaBuku)){
+                        if(buku.equals(namaBuku)){
                             adaBuku = true;
                             book = buku;
                             break;
@@ -282,15 +283,15 @@ public class Library {
                     }
                 }
                 if(person == null || person.getPinjam() == null){
-                    lagiPinjam = false;
+                    lagiPinjam = false;        
                 }
                 else{
                     for(BookLoan bukuPinjam : person.getPinjam()){
-                        if (bukuPinjam == null){
+                        if (bukuPinjam == null){    // Jika member belum meminjam buku
                             lagiPinjam = false;
                             break;
                         }
-                        if(bukuPinjam.getBook().getTitle().equals(namaBuku)){
+                        if(bukuPinjam.getBook().equals(namaBuku)){      // Jika buku sedang dipinjam
                             lagiPinjam = bukuPinjam.getStatus();
                         }
                     }
@@ -305,9 +306,9 @@ public class Library {
                     System.out.printf("Buku %s tidak sedang dipinjam\n", namaBuku);
                 }
                 else{
-                    person.kembali(book, tanggal);
+                    person.kembali(book, tanggal);      // Memanggil method untuk mengembalikan buku
                     System.out.printf("Buku %s berhasil dikembalikan oleh %s dengan denda Rp %d!\n",
-                                    book.getTitle(), person.getName(), person.getFine());
+                                    book, person, person.getFine());
                 }
 
             } else if (command == 6) {
@@ -323,7 +324,7 @@ public class Library {
                     adaID = false;
                 }
                 else{
-                    for(Member member : members){
+                    for(Member member : members){           // Jika input ID sesuai dengan ID member
                         if(member.getID().equals(ID)){
                             adaID = true;
                             person = member;
@@ -336,16 +337,16 @@ public class Library {
                     System.out.printf("Anggota dengan ID %s tidak ditemukan", ID);
                 }
                 else if(person.getFine() == 0){
-                    System.out.printf("%s tidak memiliki denda", person.getName());
+                    System.out.printf("%s tidak memiliki denda", person);
                 }
                 else if(uang >= person.getFine()){
-                    System.out.printf("%s berhasil membayar lunas denda", person.getName());
+                    System.out.printf("%s berhasil membayar lunas denda", person);
                     person.bayarDenda(uang);
                     System.out.printf("Jumlah kembalian: Rp %d", uang-person.getFine());
                 }
                 else{
-                    person.bayarDenda(uang);
-                    System.out.printf("%s berhasil membayar denda sebesar Rp %d", person.getName(), uang);
+                    person.bayarDenda(uang);        // Memanggil method untuk bayar denda
+                    System.out.printf("%s berhasil membayar denda sebesar Rp %d", person, uang);
                     System.out.printf("Sisa denda saat ini: Rp %d", person.getFine());
                 }
 
@@ -360,7 +361,7 @@ public class Library {
                 }
                 else{
                     for(Member member : members){
-                        if(member.getID().equals(ID)){
+                        if(member.getID().equals(ID)){      // Jika input ID sesuai dengan ID member
                             adaID = true;
                             person = member;
                             break;
@@ -380,12 +381,15 @@ public class Library {
                 }
                 else{
                     System.out.println("---------- Peringkat Anggota ----------");
-                    Arrays.sort(members, Comparator.comparingInt(Member::getPoint));
+                    //Comparator<Member> byPoint = Comparator.comparing(Member::getPoint).reversed();
+                    //Comparator<Member> byName = Comparator.comparing(Member::getName);
+                    //Arrays.sort(members, byPoint.thenComparing(byName));
+
                     int counter = 1;
                     for(Member member : members){
                         System.out.printf("—------------- %d —-------------", counter);
                         System.out.printf("\nID Anggota: %s", member.getID());
-                        System.out.printf("\nNama Anggota: %s", member.getName());
+                        System.out.printf("\nNama Anggota: %s", member);
                         System.out.printf("\nTotal Point: %d", member.getPoint());
                         System.out.printf("\nDenda: %d\n", member.getFine());
                         if(counter==3){
