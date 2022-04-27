@@ -1,4 +1,5 @@
 assignment2/testcases/out-mahasiswa/*
+assignment3/testcases/out-mahasiswa/*.txt
 
 # Customized ignores
 **/*.class
