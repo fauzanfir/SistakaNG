@@ -14,6 +14,7 @@ import java.util.Scanner;
 import java.util.Comparator;
 
 public class SistakaNG {
+    // Membuat attribute pada SistakaNG dengan modifier sesuai UML
     public static ArrayList<Staf> daftarStaf = new ArrayList<Staf>();
     public static ArrayList<Anggota> daftarAnggota = new ArrayList<Anggota>();
     public static ArrayList<Buku> daftarBuku = new ArrayList<Buku>();
@@ -119,8 +120,7 @@ public class SistakaNG {
             System.out.print("Masukkan pilihan menu: ");
             command = Integer.parseInt(input.nextLine());
             System.out.println();
-            if (command == 1) {
-                // TODO: Implementasikan menu-nya
+            if (command == 1) {             // Menambahkan object anggota dengan handle tertentu
                 System.out.println("---------- Tambah Anggota ----------");
                 System.out.print("Tipe Anggota: ");
                 String tipe = input.nextLine();
@@ -157,7 +157,7 @@ public class SistakaNG {
                     System.out.printf("Tipe Anggota %s tidak valid!", tipe);
                 }
 
-            } else if (command == 2) {
+            } else if (command == 2) {          // Menambahkan object Kategori dengan handle tertentu
                 System.out.println("---------- Tambah Kategori ----------");                
                 System.out.print("Nama Kategori: ");
                 String nama = input.nextLine();
@@ -179,7 +179,7 @@ public class SistakaNG {
                     System.out.printf("Kategori %s dengan poin %d berhasil ditambahkan", ktg.getName(), ktg.getPoint());
                 }
 
-            } else if (command == 3) {
+            } else if (command == 3) {          // Menmbahkan object Buku dengan handle tertentu
                 System.out.println("---------- Tambah Buku ----------");
                 System.out.print("Judul : ");
                 String judul = input.nextLine();
@@ -225,7 +225,7 @@ public class SistakaNG {
                     daftarBuku.add(buku);
                 }
 
-            } else if (command == 4) {
+            } else if (command == 4) {                  // Menghapus salah satu object Buku pada daftarBuku
                 System.out.println("---------- Hapus Buku ----------");
                 System.out.print("Judul: ");
                 String judul = input.nextLine();
@@ -252,17 +252,14 @@ public class SistakaNG {
                     daftarBuku.remove(iniBuku);
                 }
 
-            } else if (command == 5) {
+            } else if (command == 5) {          // Mengurutkan Anggota
                 System.out.println("---------- Peringkat Anggota ----------");
                 if(daftarAnggota.size() == 0){
                     System.out.print("Belum ada anggota yang terdaftar pada sistem");
                 }
                 else{
-                    Comparator<Anggota> byPoint = Comparator.comparing(Anggota::getPoint).reversed();
-                    //Comparator<Member> byName = Comparator.comparing(Member::getName);
-                    //Arrays.sort(members, byPoint.thenComparing(byName));
-                    //Comparator<Anggota> byName = Comparator.
-                    Collections.sort(daftarAnggota, byPoint.thenComparing(Anggota.banding));
+                    Comparator<Anggota> byPoint = Comparator.comparing(Anggota::getPoint).reversed();     
+                    Collections.sort(daftarAnggota, byPoint.thenComparing(Anggota.banding));        // Berdasarkan poin lalu nama
  
                     for(int i = 0;i < daftarAnggota.size();i++){
                         if(i == 3){
@@ -276,7 +273,7 @@ public class SistakaNG {
                     }
                 }
 
-            } else if (command == 6) {
+            } else if (command == 6) {          // Untuk mencetak anggota dengan input ID
                 System.out.println("---------- Detail Anggota ----------");
                 System.out.print("ID Anggota: ");
                 String iniId = input.nextLine();
@@ -295,7 +292,7 @@ public class SistakaNG {
                     anggota.detail();
                 }
 
-            } else if (command == 7) {
+            } else if (command == 7) {              // Untuk melihat riwayat peminjaman suatu buku
                 System.out.println("---------- Daftar Peminjam Buku ----------");
                 System.out.print("Judul : ");
                 String judul = input.nextLine();
@@ -331,7 +328,7 @@ public class SistakaNG {
                     }
                 }
 
-            } else if (command == 99) {
+            } else if (command == 99) {     
                 System.out.println("Terima kasih telah menggunakan SistakaNG!");
                 hasChosenExit = true;
 
@@ -356,7 +353,7 @@ public class SistakaNG {
             System.out.print("Masukkan pilihan menu: ");
             command = Integer.parseInt(input.nextLine());
             System.out.println();
-            if (command == 1) {
+            if (command == 1) {             // Untuk meminjam buku oleh Anggota dengan beberapa handle
                 System.out.println("---------- Peminjaman Buku ----------");
                 System.out.print("Judul Buku: ");
                 String judul = input.nextLine();
@@ -370,7 +367,7 @@ public class SistakaNG {
                 for(Buku iniBuku : daftarBuku){
                     if(iniBuku.getName().equals(judul) && iniBuku.getAuthor().equals(penulis)){
                         adaBuku = true;
-                        buku = iniBuku;
+                        buku = iniBuku;         // Mengambil object Buku yang dimaksud
                     }
                 }
 
@@ -384,7 +381,7 @@ public class SistakaNG {
                     System.out.print(((Anggota)penggunaLoggedIn).pinjam(buku, tgl));
                 }
 
-            } else if (command == 2) {
+            } else if (command == 2) {              // Untuk mengembalikan buku yang sudah pernah dipinjam
                 System.out.println("---------- Pengembalian Buku ----------");
                 System.out.print("Judul Buku: ");
                 String judul = input.nextLine();
@@ -398,7 +395,7 @@ public class SistakaNG {
                 for(Buku iniBuku : daftarBuku){
                     if(iniBuku.getName().equals(judul) && iniBuku.getAuthor().equals(penulis)){
                         adaBuku = true;
-                        buku = iniBuku;
+                        buku = iniBuku;         // Mengambil object Buku yang dimaksud
                     }
                 }
                 if(!adaBuku){
@@ -408,14 +405,14 @@ public class SistakaNG {
                     System.out.print(((Anggota)penggunaLoggedIn).kembali(buku, tgl));
                 }
 
-            } else if (command == 3) {
+            } else if (command == 3) {          // Untuk membayar denda Anggota
                 System.out.println("---------- Pembayaran Denda ----------");
                 System.out.print("Jumlah: ");
                 Long jumlah = input.nextLong();
                 input.nextLine();
                 System.out.print(((Anggota)penggunaLoggedIn).bayarDenda(jumlah));
 
-            } else if (command == 4) {
+            } else if (command == 4) {          // Untuk mencetak Anggota yang sedang ter logged in
                 ((Anggota)penggunaLoggedIn).detail();
 
             } else if (command == 99) {
