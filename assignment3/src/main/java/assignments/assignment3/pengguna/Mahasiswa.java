@@ -47,7 +47,7 @@ public class Mahasiswa extends Anggota{
             return "Jumlah buku yang sedang dipinjam sudah mencapai batas maksimal";
         }
         else if(getFine() >= BATAS_MAKSIMAL_DENDA){
-            return "Denda lebih dari Rp5000";
+            return "Denda lebih dari Rp" + BATAS_MAKSIMAL_DENDA;
         }
         else if(sedangPinjam){
             return String.format("Buku %s oleh %s sedang dipinjam", buku.getName(), buku.getAuthor());
