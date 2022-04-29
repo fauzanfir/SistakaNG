@@ -1,6 +1,7 @@
 package assignments.assignment3.pengguna;
 import assignments.assignment3.buku.Buku;
 import assignments.assignment3.buku.Peminjaman;
+import java.util.ArrayList;
 
 public class Dosen extends Anggota{
     // TODO: Implementasi kelas ini sesuai dengan UML Diagram (attribute, method, inheritance, dll)
@@ -31,7 +32,7 @@ public class Dosen extends Anggota{
                 }
             }
         }
-        if(getDaftarPeminjaman().size() == BATAS_JUMLAH_PEMINJAMAN_BUKU){
+        if(getJumlahPinjam() == BATAS_JUMLAH_PEMINJAMAN_BUKU){
             return "Jumlah buku yang sedang dipinjam sudah mencapai batas maksimal";
         }
         else if(getFine() >= BATAS_MAKSIMAL_DENDA){
@@ -42,7 +43,14 @@ public class Dosen extends Anggota{
         }
         else{
             Peminjaman bukuPinjam = new Peminjaman(this, buku, tanggalPeminjaman);
-            getDaftarPeminjaman().add(bukuPinjam);
+            ArrayList<Peminjaman> tempDaftar = getDaftarPeminjaman();
+            tempDaftar.add(bukuPinjam);
+            setDaftarPeminjaman(tempDaftar);
+            bukuPinjam.getBook().setStok(bukuPinjam.getBook().getStok()-1);
+            ArrayList<CanBorrow> peminjam = buku.getDaftarPinjam();
+            peminjam.add(this);
+            buku.setDaftarPinjam(peminjam);
+            setJumlahPinjam(1);
             return String.format("%s berhasil meminjam Buku %s!", getName(), buku.getName());
         }
     }

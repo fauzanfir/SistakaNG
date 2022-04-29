@@ -22,6 +22,7 @@ public class Buku {
         this.penerbit = penerbit;
         this.kategori = kategori;
         this.stokAwal = stok;
+        this.stok = stok;
     }
     // Membuat method setter dan getter sebutuhnya
     public String getName(){
@@ -44,6 +45,9 @@ public class Buku {
     }
     public ArrayList<CanBorrow> getDaftarPinjam(){
         return daftarPeminjam;
+    }
+    public void setDaftarPinjam(ArrayList<CanBorrow> daftarPeminjam){
+        this.daftarPeminjam = daftarPeminjam;
     }
     public int getStokAwal(){
         return this.stokAwal;

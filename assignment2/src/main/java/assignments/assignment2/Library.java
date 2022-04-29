@@ -59,8 +59,8 @@ public class Library {
                         temp[members.length] = member;
                         members = temp.clone();
                     }
-                    System.out.println("Member Dek Depe berhasil ditambahkan dengan data:");
-                    System.out.printf("ID Anggota: %s", ID);
+                    System.out.printf("Member %s berhasil ditambahkan dengan data:", nama);
+                    System.out.printf("\nID Anggota: %s", ID);
                     System.out.printf("\nNama Anggota: %s", nama);
                     System.out.printf("\nTotal Point: %d", member.getPoint());
                     System.out.printf("\nDenda: %o\n", member.getFine());
@@ -146,7 +146,7 @@ public class Library {
                 else if(!adaKat){
                     System.out.printf("Kategori %s tidak ditemukan\n", namaKategori);
                 }
-                else if (stok == 0){
+                else if (stok <= 0){
                     System.out.println("Stok harus lebih dari 0\n");
                 }
                 else{       // Jika buku belum ada, kategori sesuai, dan stok lebih dari 0

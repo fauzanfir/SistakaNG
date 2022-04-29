@@ -57,7 +57,7 @@ public class SistakaNG {
             if (command == 1) {
                 menuLogin();
             } else if (command == 2) {
-                System.out.println("Terima kasih telah menggunakan SistakaNG. Sampai jumpa di lain kesempatan!");
+                System.out.print("Terima kasih telah menggunakan SistakaNG. Sampai jumpa di lain kesempatan!");
                 hasChosenExit = true;
             } else {
                 System.out.print("Menu tidak dikenal!");
@@ -70,7 +70,7 @@ public class SistakaNG {
     public static void menuLogin() {
         boolean isLoginSuccess = false;
         while (!isLoginSuccess) {
-            System.out.println("\nMasukkan ID Anda untuk login ke sistem");
+            System.out.println("Masukkan ID Anda untuk login ke sistem");
             System.out.print("ID: ");
             String id = input.nextLine();
             for(Pengguna pengguna : daftarStaf){
@@ -248,7 +248,7 @@ public class SistakaNG {
                     System.out.printf("Buku %s oleh %s tidak dapat dihapus karena sedang dipinjam", judul, penulis);
                 }
                 else{
-                    System.out.printf("Buku %s oleh %s berhasil dihapus", judul, penulis);
+                    System.out.printf("Buku %s oleh %s berhasil dihapus", iniBuku.getName(), iniBuku.getAuthor());
                     daftarBuku.remove(iniBuku);
                 }
 
@@ -269,7 +269,10 @@ public class SistakaNG {
                             break;
                         }
                         System.out.printf("----------------- %d -----------------\n", i+1);
-                        System.out.println(daftarAnggota.get(i));
+                        System.out.print(daftarAnggota.get(i));
+                        if(i != 2 || i != daftarAnggota.size()-1){
+                            System.out.println();
+                        }
                     }
                 }
 
@@ -314,15 +317,15 @@ public class SistakaNG {
                 }
                 else{
                     System.out.println(iniBuku);
-                    System.out.println("---------- Daftar Peminjam ----------");
+                    System.out.print("---------- Daftar Peminjam ----------");
                     if(iniBuku.getDaftarPinjam().size() == 0){
                         System.out.printf("Belum ada anggota yang meminjam buku %s", iniBuku.getName());
                     }
                     else{
                         int i = 1;
                         for(CanBorrow iniAnggota : iniBuku.getDaftarPinjam()){
-                            System.out.printf("----------------- %d -----------------", i);
-                            System.out.println((Anggota)iniAnggota);
+                            System.out.printf("\n----------------- %d -----------------\n", i);
+                            System.out.print((Anggota)iniAnggota);
                             i++;
                         } 
                     }
@@ -378,7 +381,7 @@ public class SistakaNG {
                     System.out.printf("Buku %s oleh %s tidak tersedia", buku.getName(), buku.getAuthor());
                 }
                 else{
-                    System.out.println(((Anggota)penggunaLoggedIn).pinjam(buku, tgl));
+                    System.out.print(((Anggota)penggunaLoggedIn).pinjam(buku, tgl));
                 }
 
             } else if (command == 2) {
@@ -402,7 +405,7 @@ public class SistakaNG {
                     System.out.printf("Buku %s oleh %s tidak ditemukan", judul, penulis);
                 }
                 else{
-                    System.out.println(((Anggota)penggunaLoggedIn).pinjam(buku, tgl));
+                    System.out.print(((Anggota)penggunaLoggedIn).kembali(buku, tgl));
                 }
 
             } else if (command == 3) {
@@ -410,7 +413,7 @@ public class SistakaNG {
                 System.out.print("Jumlah: ");
                 Long jumlah = input.nextLong();
                 input.nextLine();
-                System.out.println(((Anggota)penggunaLoggedIn).bayarDenda(jumlah));
+                System.out.print(((Anggota)penggunaLoggedIn).bayarDenda(jumlah));
 
             } else if (command == 4) {
                 ((Anggota)penggunaLoggedIn).detail();

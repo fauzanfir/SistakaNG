@@ -10,6 +10,7 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
     // TODO: Implementasi kelas ini sesuai dengan UML Diagram (attribute, method, inheritance, dll)
     private long denda = 0;
     private int poin = 0;
+    private int pinjamAktif = 0;
     private ArrayList<Peminjaman> daftarPeminjaman = new ArrayList<Peminjaman>();
 
     protected Anggota(){
@@ -25,9 +26,11 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
         }    
         else{
             if (jumlahBayar >= this.denda){       // Jika uang yang dibayar lebih banyak dengan denda
+                Long sblmBayar = denda;
                 this.denda -= this.denda;         // Maka denda akan menjadi 0
+                setFine(denda);
                 return String.format("%s berhasil membayar lunas denda\nJumlah kembalian: Rp%s",
-                getName(), jumlahBayar-this.denda);
+                getName(), jumlahBayar - sblmBayar);
             }
             else{
                 this.denda -= jumlahBayar;      // Jika uang kurang, maka denda akan dikurangi uang yang diberikan
@@ -52,32 +55,27 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
         else{
             bukuPinjam.kembalikanBuku(tanggalPengembalian);
             bukuPinjam.setFine(bukuPinjam.hitungDenda());
-            return String.format("Buku %s berhasil dikembalikan oleh %s dengan denda Rp%d", 
+            setJumlahPinjam(-1);
+            bukuPinjam.getBook().setStok(bukuPinjam.getBook().getStok()+1);
+            return String.format("Buku %s berhasil dikembalikan oleh %s dengan denda Rp%d!", 
                 bukuPinjam.getBook().getName(), getName(), bukuPinjam.getFine());
         }
     }
 
     public void detail() {
-        System.out.printf("ID Anggota: %s", getId());
-        System.out.printf("\nNama Anggota: %s", getName());
-        System.out.printf("\nTotal point: %d", getPoint());
-        System.out.printf("\nDenda: %d", getFine());
-        System.out.println("\nRiwayat Peminjaman Buku :");
+        System.out.print(this);
+        System.out.print("\nRiwayat Peminjaman Buku :");
         int counter = 1;
         if(daftarPeminjaman.size() == 0){
-            System.out.println("Belum pernah meminjam buku");
+            System.out.print("\nBelum pernah meminjam buku");
         }
         else{
             for(Peminjaman bukuPinjam : daftarPeminjaman){
-                System.out.printf("—------------- %d —-------------", counter);
-                System.out.printf("\nJudul Buku: %s", bukuPinjam.getBook());
-                System.out.printf("\nPenulis Buku: %s", bukuPinjam.getBook().getAuthor());
-                System.out.printf("\nPenerbit Buku: %s", bukuPinjam.getBook().getPublisher());
-                System.out.printf("\nKategori: %s", bukuPinjam.getBook().getCategory().getName());
-                System.out.printf("\nPoint: %d", bukuPinjam.getBook().getCategory().getPoint());
+                System.out.printf("\n—------------- %d —-------------\n", counter);
+                System.out.print(bukuPinjam.getBook());
                 System.out.printf("\nTanggal Peminjaman: %s", bukuPinjam.getTanggalPinjam());
                 System.out.printf("\nTanggal Pengembalian: %s", bukuPinjam.getTanggalKembali());
-                System.out.printf("\nDenda: Rp %d\n", bukuPinjam.getFine());
+                System.out.printf("\nDenda: Rp%d", bukuPinjam.getFine());
                 counter++;
             }
         }
@@ -95,8 +93,17 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
     public void setFine(long denda){
         this.denda += denda;
     }
+    public int getJumlahPinjam(){
+        return this.pinjamAktif;
+    }
+    public void setJumlahPinjam(int num){
+        this.pinjamAktif += num;
+    }
     public ArrayList<Peminjaman> getDaftarPeminjaman(){
         return daftarPeminjaman;
+    }
+    public void setDaftarPeminjaman(ArrayList<Peminjaman> daftarPeminjaman) {
+        this.daftarPeminjaman = daftarPeminjaman;
     }
 
     @Override

@@ -1,4 +1,6 @@
 package assignments.assignment3.pengguna;
+import java.util.ArrayList;
+
 import assignments.assignment3.IdGenerator;
 import assignments.assignment3.buku.Buku;
 import assignments.assignment3.buku.Peminjaman;
@@ -38,7 +40,7 @@ public class Mahasiswa extends Anggota{
                 }
             }
         }
-        if(getDaftarPeminjaman().size() == BATAS_JUMLAH_PEMINJAMAN_BUKU){
+        if(getJumlahPinjam() == BATAS_JUMLAH_PEMINJAMAN_BUKU){
             return "Jumlah buku yang sedang dipinjam sudah mencapai batas maksimal";
         }
         else if(getFine() >= BATAS_MAKSIMAL_DENDA){
@@ -49,7 +51,14 @@ public class Mahasiswa extends Anggota{
         }
         else{
             Peminjaman bukuPinjam = new Peminjaman(this, buku, tanggalPeminjaman);
-            getDaftarPeminjaman().add(bukuPinjam); ///////gfgfghffhfghfghjffgjhgfgffhjfhghgf
+            ArrayList<Peminjaman> tempDaftar = getDaftarPeminjaman();
+            tempDaftar.add(bukuPinjam);
+            setDaftarPeminjaman(tempDaftar);
+            bukuPinjam.getBook().setStok(bukuPinjam.getBook().getStok()-1);
+            ArrayList<CanBorrow> peminjam = buku.getDaftarPinjam();
+            peminjam.add(this);
+            buku.setDaftarPinjam(peminjam);
+            setJumlahPinjam(1);
             return String.format("%s berhasil meminjam Buku %s!", getName(), buku.getName());
         }
     }
