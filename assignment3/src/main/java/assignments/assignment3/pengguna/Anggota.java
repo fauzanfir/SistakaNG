@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import assignments.assignment3.buku.Buku;
 
+// Kelas Anggota merupakan subclass abstrak dari Pengguna yang mengimplemen interface Comparable dan Canborrow
 public abstract class Anggota extends Pengguna implements Comparable<Anggota>, CanBorrow {
-    // TODO: Implementasi kelas ini sesuai dengan UML Diagram (attribute, method, inheritance, dll)
+    // Membuat attribute pada Anggota dengan modifier sesuai UML
     private long denda = 0;
     private int poin = 0;
     private int pinjamAktif = 0;
     private ArrayList<Peminjaman> daftarPeminjaman = new ArrayList<Peminjaman>();
 
+    // Membuat constructor tertutup untuk anggota
     protected Anggota(){
     }
 
@@ -46,24 +48,24 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
         for(Peminjaman iniBukuPinjam : getDaftarPeminjaman()){
             if(iniBukuPinjam.getBook() == buku){
                 sedangPinjam = true;
-                bukuPinjam = iniBukuPinjam;
+                bukuPinjam = iniBukuPinjam;             // Mengambil object Peminjaman
             }
         }
         if(!sedangPinjam){
             return String.format("Buku %s tidak sedang dipinjam oleh %s", buku.getName(), getName());
         }
         else{
-            bukuPinjam.kembalikanBuku(tanggalPengembalian);
-            bukuPinjam.setFine(bukuPinjam.hitungDenda());
-            setJumlahPinjam(-1);
-            bukuPinjam.getBook().setStok(bukuPinjam.getBook().getStok()+1);
+            bukuPinjam.kembalikanBuku(tanggalPengembalian);     // set tanggal pengembalian
+            bukuPinjam.setFine(bukuPinjam.hitungDenda());               // set jumlah denda
+            setJumlahPinjam(-1);                                    // Set buku pinjam aktif
+            bukuPinjam.getBook().setStok(bukuPinjam.getBook().getStok()+1);         // Set jumlah stok buku
             return String.format("Buku %s berhasil dikembalikan oleh %s dengan denda Rp%d!", 
                 bukuPinjam.getBook().getName(), getName(), bukuPinjam.getFine());
         }
     }
 
     public void detail() {
-        System.out.print(this);
+        System.out.print(this);         // Mencetak toString Anggota
         System.out.print("\nRiwayat Peminjaman Buku :");
         int counter = 1;
         if(daftarPeminjaman.size() == 0){
@@ -81,6 +83,7 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
         }
     }
 
+    // Membuat method setter getter secukupnya
     public int getPoint(){
         return this.poin;
     }
@@ -106,6 +109,7 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
         this.daftarPeminjaman = daftarPeminjaman;
     }
 
+    // Membuat method overrider untuk Collections.sort
     @Override
     public int compareTo(Anggota other){
         for(int i = 0;i < this.getName().length();i++){
@@ -134,6 +138,7 @@ public abstract class Anggota extends Pengguna implements Comparable<Anggota>, C
     };  // Implementasi method berikut berdasarkan ->
         // https://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/
 
+    // Membuat method overrider toString
     @Override
     public String toString(){
         return String.format("ID Anggota: %s\nNama Anggota: %s\nTotal Poin: %d\nDenda: Rp%d",

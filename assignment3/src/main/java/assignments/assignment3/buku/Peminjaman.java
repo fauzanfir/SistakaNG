@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import assignments.assignment3.pengguna.Anggota;
 
 public class Peminjaman {
-    // TODO: Implementasi kelas ini sesuai dengan UML Diagram (attribute, method, inheritance, dll)
+    // Membuat attribute pada Kategori dengan modifier sesuai UML
     private static long DENDA_PER_HARI = 3000;
     private Anggota anggota;
     private Buku buku;
@@ -17,15 +17,15 @@ public class Peminjaman {
 
     public Peminjaman(){
     }
-    // Men-construct object BookLoan
+    // Men-construct object Peminjaman
     public Peminjaman(Anggota anggota, Buku buku, String tanggalPeminjaman){
         this.anggota = anggota;
         this.buku = buku;
         this.tanggalPeminjaman = tanggalPeminjaman;
     }
-    // Membuat method setter dan getter yang dibutuhkan
+    
     public void kembalikanBuku(String tanggalPengembalian){
-        this.tanggalPengembalian = tanggalPengembalian;
+        this.tanggalPengembalian = tanggalPengembalian;         // Untuk set tanggal [engembalian]
     }
     public long hitungDenda(){
         anggota.setPoint(anggota.getPoint()+buku.getCategory().getPoint());         // Point setiap member akan bertambah sesuai dengan
@@ -53,6 +53,8 @@ public class Peminjaman {
         return this.denda;
         // Ide mengurangi tanggal ini berasal dari https://www.delftstack.com/howto/java/java-subtract-dates/
     }
+
+    // Membuat method setter dan getter yang dibutuhkan
     public void setFine(long fine){
         this.denda = fine;
     }
@@ -81,6 +83,7 @@ public class Peminjaman {
         return this.denda;
     }
 
+    // Membuat method overrider toString
     @Override
     public String toString(){
         return String.format("%s\nTanggal Peminjaman: %s\nTanggal Pengembalian: %s\nDenda: Rp%d", 

@@ -1,10 +1,10 @@
 package assignments.assignment3.buku;
 
 import java.util.ArrayList;
-
 import assignments.assignment3.pengguna.CanBorrow;
 
-public class Buku {
+public class Buku {        
+    // Membuat attribute pada Buku dengan modifier sesuai UML
     private String judul;
     private String penulis;
     private String penerbit;
@@ -15,7 +15,7 @@ public class Buku {
 
     public Buku(){
     }
-    // Men-construct object Book
+    // Men-construct object Buku
     public Buku(String judul, String pengarang, String penerbit, Kategori kategori, int stok){
         this.judul = judul;
         this.penulis = pengarang;
@@ -53,6 +53,7 @@ public class Buku {
         return this.stokAwal;
     }
 
+    // Membuat method overrider toString
     @Override
     public String toString() {
         return String.format("Judul Buku: %s\nPenulis Buku: %s\nPenerbit buku: %s\n%s", 
