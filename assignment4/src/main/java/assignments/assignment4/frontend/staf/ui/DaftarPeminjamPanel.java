@@ -9,14 +9,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
 public class DaftarPeminjamPanel extends SistakaPanel {
     JComboBox<String> buku;
-
     JLabel detail;
 
     public DaftarPeminjamPanel(HomeGUI main) {
         super(main);
+
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
 
         JLabel judul = new JLabel("Lihat Daftar Peminjam");
@@ -43,6 +43,7 @@ public class DaftarPeminjamPanel extends SistakaPanel {
         add(lihat);
         add(kembali);
 
+        // Membuat panel yang dapat di scroll jika dibutuhkan
         JPanel panel = new JPanel();
         detail = new JLabel();
         detail.setText("");
@@ -60,13 +61,11 @@ public class DaftarPeminjamPanel extends SistakaPanel {
                     String[] temp = inputBuku.split(" oleh ");
                     Buku iniBuku = SistakaNG.findBuku(temp[0], temp[1]);
                     String bukuPinjam = SistakaNG.daftarPeminjam(iniBuku);
-                    detail.setText(bukuPinjam);
+                    detail.setText(bukuPinjam);         // Menampilkan anggota yang meminjam buku tertentu
                 }
                 else{
                     showWarning("Silahkan memilih ID anggota!");
                 }
-                //area.setText(iniAnggota.detail());
-                //detail.setText(iniAnggota.detail());
             }
         });
 
@@ -80,7 +79,6 @@ public class DaftarPeminjamPanel extends SistakaPanel {
     @Override
     public void refresh() {
         buku.setSelectedItem("");
-        // area.setText("");
         detail.setText("");
         if(buku != null){
             buku.removeAllItems();

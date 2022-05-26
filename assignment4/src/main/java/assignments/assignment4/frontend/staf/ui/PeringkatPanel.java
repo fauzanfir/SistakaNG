@@ -9,11 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
 public class PeringkatPanel extends SistakaPanel {
     JLabel peringkat = new JLabel();
     public PeringkatPanel(HomeGUI main) {
         super(main);
+
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
         JLabel judul = new JLabel("Peringkat");
         JButton kembali = new JButton("Kembali");
@@ -38,6 +39,6 @@ public class PeringkatPanel extends SistakaPanel {
 
     @Override
     public void refresh() {
-        peringkat.setText(SistakaNG.handleRankingAnggota());
+        peringkat.setText(SistakaNG.handleRankingAnggota());        // Mengupdate isi peringkat
     }
 }

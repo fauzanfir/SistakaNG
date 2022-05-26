@@ -12,6 +12,7 @@ public abstract class SistakaPanel extends JPanel {
 
     public SistakaPanel(HomeGUI main) {
         this.main = main;
+        // Menambahkan warna pada setiap komponen
         setBorder(new EmptyBorder(10,10,10,10));
         setBackground(new ColorUIResource(Color.decode("#E4CE7D")));
         UIManager.put("Panel.background", new ColorUIResource(Color.decode("#E4CE7D")));
@@ -25,7 +26,7 @@ public abstract class SistakaPanel extends JPanel {
     public abstract void refresh();
 
 
-    // Utility
+    // Mengecek apakah angka
     public static boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);
@@ -35,6 +36,7 @@ public abstract class SistakaPanel extends JPanel {
         }
     }
 
+    // Menunjukkan panel message
     public void showWarning(String text){
         JOptionPane.showMessageDialog(this, text, "Warning!",JOptionPane.WARNING_MESSAGE);
     }
@@ -43,6 +45,7 @@ public abstract class SistakaPanel extends JPanel {
         JOptionPane.showMessageDialog(this, text, "Info!",JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // Mengecek input tanggal
     public static boolean isDateValid(String tanggal){
         String[] arrOfTanggalLahir = tanggal.split("/");
 

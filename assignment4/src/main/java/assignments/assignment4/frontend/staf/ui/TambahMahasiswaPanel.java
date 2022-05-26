@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
 public class TambahMahasiswaPanel extends SistakaPanel {
     String[] program = {"SIK", "SSI", "MIK", "MTI", "DIK"};
     JTextField nama, tgl, akt;
@@ -17,9 +16,9 @@ public class TambahMahasiswaPanel extends SistakaPanel {
 
     public TambahMahasiswaPanel(HomeGUI main) {
         super(main);
-        // TODO: Implementasikan hal-hal yang diperlukan
         setLayout(null);
 
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         JLabel judul = new JLabel("Tambah Mahasiswa");
         JLabel label1 = new JLabel("Nama :");
         JLabel label2 = new JLabel("Tanggal Lahir (DD/MM/YYYY) :");
@@ -70,14 +69,14 @@ public class TambahMahasiswaPanel extends SistakaPanel {
 
         tambah.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent e){
-            String inputName = nama.getText();
+            String inputName = nama.getText();      // Mengambil input pada texfield
             String inputTgl = tgl.getText();
             String inputAkt = akt.getText();
             String inputPs = (String)progStud.getSelectedItem();
 
-            if(isNumeric(inputAkt) && isDateValid(inputTgl)){
+            if(isNumeric(inputAkt) && isDateValid(inputTgl)){           // Jika input sesuai
                 Mahasiswa mhs = SistakaNG.addMahasiswa(inputName, inputTgl, inputPs, inputAkt);
-                if(mhs != null){
+                if(mhs != null){           // Jika berhasil membuat object mahasiswa
                     showInfo(String.format("Berhasil menambahkan mahasiswa dengan ID %s", mhs.getId()));
                     main.setPanel("staf");
                 }

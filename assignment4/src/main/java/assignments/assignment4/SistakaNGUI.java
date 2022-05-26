@@ -14,7 +14,7 @@ public class SistakaNGUI {
         frame.setTitle("SistakaNG");
         SistakaNG.registerStaf();
 
-        // TODO: Tambahkan hal-hal lain yang diperlukan
+        // Membuat ukuran dari frame dan mengunci ukuran
         frame.setSize(450, 600);
 
         HomeGUI iniGui = new HomeGUI(frame);

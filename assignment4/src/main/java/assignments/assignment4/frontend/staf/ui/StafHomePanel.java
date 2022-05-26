@@ -13,6 +13,8 @@ public class StafHomePanel extends SistakaPanel {
     public StafHomePanel(HomeGUI main) {
         super(main);
         setLayout(null);
+
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setSize(450, 600);
         
         String label0 = "<html>" + "Tambah" + "<br>" + "Mahasiswa" + "</html>";

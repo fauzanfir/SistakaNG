@@ -9,13 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
 public class HapusBukuPanel extends SistakaPanel {
     JComboBox<String> buku;
     public HapusBukuPanel(HomeGUI main) {
         super(main);
         setLayout(null);
         
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         JLabel judul = new JLabel("Hapus Buku");
         JLabel label1 = new JLabel("Judul : ");
         buku = new JComboBox<>();
@@ -27,7 +27,6 @@ public class HapusBukuPanel extends SistakaPanel {
         buku.setFont(new Font("Times", Font.PLAIN, 11));
         hapus.setFont(new Font("Times", Font.PLAIN, 11));
         kembali.setFont(new Font("Times", Font.PLAIN, 11));
-
 
         judul.setBounds(120, 50, 250, 50);
         label1.setBounds(50, 250, 175, 30);
@@ -46,10 +45,10 @@ public class HapusBukuPanel extends SistakaPanel {
             String inputBuku = (String)buku.getSelectedItem();
 
             if(inputBuku == null){
-                showWarning("Silahkan memilih buku!");
+                showWarning("Silahkan memilih buku!");      // Jika combobox tidak memilih buku apapun
             }
-            else{
-                String[] temp = inputBuku.split(" oleh ");
+            else{  
+                String[] temp = inputBuku.split(" oleh ");      // Memisahkan String toString pada buku
                 Buku iniBuku = SistakaNG.findBuku(temp[0], temp[1]);
                 String temp2 = SistakaNG.deleteBuku(iniBuku);
 

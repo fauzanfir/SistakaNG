@@ -9,12 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
 public class TambahKategoriPanel extends SistakaPanel {
     JTextField nama, poin;
     public TambahKategoriPanel(HomeGUI main) {
         super(main);
-        // TODO: Implementasikan hal-hal yang diperlukan
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
 
         JLabel judul = new JLabel("Tambah Kategori");
@@ -54,7 +53,7 @@ public class TambahKategoriPanel extends SistakaPanel {
             String inputName = nama.getText();
             String inputPoin = poin.getText();
 
-            if(!inputName.equals("") && !inputPoin.equals("") && isNumeric(inputPoin)){
+            if(!inputName.equals("") && !inputPoin.equals("") && isNumeric(inputPoin)){     // Jika input sesuai
                 int poinKtg = Integer.parseInt(inputPoin);
                 Kategori tempKat = SistakaNG.findKategori(inputName);
                 if(tempKat == null){
@@ -62,7 +61,7 @@ public class TambahKategoriPanel extends SistakaPanel {
                     showInfo(String.format("Kategori %s dengan poin %d\nberhasil ditambahkan", ktg.getNama(), ktg.getPoin()));
                     main.setPanel("staf");
                 }
-                else{
+                else{           // Jika sudah ada kategori yang sama
                     showWarning(String.format("Kategori %s sudah pernah ditambahkan", tempKat.getNama()));
                 }
             }

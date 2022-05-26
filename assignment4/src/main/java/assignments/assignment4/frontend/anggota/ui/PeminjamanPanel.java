@@ -15,6 +15,8 @@ public class PeminjamanPanel extends SistakaPanel {
     JTextField tgl;
     public PeminjamanPanel(HomeGUI main) {
         super(main);
+
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
         
         JLabel judul = new JLabel("Pinjam Buku");
@@ -55,17 +57,17 @@ public class PeminjamanPanel extends SistakaPanel {
             String inputBuku = (String)buku.getSelectedItem();
             String tanggal = tgl.getText();
             
-            if(inputBuku == null){
+            if(inputBuku == null){          // Jika combobox kosong
                 showWarning("Silahkan memilih buku!");
             }
             else{
-                if(!isDateValid(tanggal)){
+                if(!isDateValid(tanggal)){          // Jika input tanggal sesuai
                     showWarning("Tanggal yang dimasukkan harus dalam format DD/MM/YYYY");
                 }
                 else{
                     String[] temp = inputBuku.split(" oleh ");
                     Buku iniBuku = SistakaNG.findBuku(temp[0], temp[1]);
-                    String temp2 = SistakaNG.pinjamBuku(iniBuku, tanggal);
+                    String temp2 = SistakaNG.pinjamBuku(iniBuku, tanggal);      // Meminjam buku
                     showInfo(temp2);
                     buku.setSelectedItem("");
                     tgl.setText("");

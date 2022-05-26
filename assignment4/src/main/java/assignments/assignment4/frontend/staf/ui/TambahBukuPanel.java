@@ -11,12 +11,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
 public class TambahBukuPanel extends SistakaPanel {
     JTextField judulBuku, penulis, penerbit, stok;
     JComboBox<String> kategori;
     public TambahBukuPanel(HomeGUI main) {
         super(main);
+
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
 
         JLabel judul = new JLabel("Tambah Buku");
@@ -85,16 +86,16 @@ public class TambahBukuPanel extends SistakaPanel {
             String inputKat = (String)kategori.getSelectedItem();
             Buku iniBuku = SistakaNG.findBuku(inputJudul, inputPenulis);
 
-            if(!inputJudul.equals("") && !inputPenulis.equals("") && 
+            if(!inputJudul.equals("") && !inputPenulis.equals("") &&        // Jika input sesuai
             inputKat != null && !inputPenerbit.equals("") && isNumeric(inputStok)){
                 int stokBuku = Integer.parseInt(inputStok);
-                if(stokBuku <= 0){
+                if(stokBuku <= 0){          // Jika input stok buku kurang dari 1
                     showWarning("Stok harus lebih dari 0!");
                 }
-                else if(iniBuku != null){
+                else if(iniBuku != null){           // Jika terdapat buku yang sudah terdaftarkan
                     showWarning(String.format("Buku %s oleh %s\nsudah pernah diterbitkan", iniBuku.getJudul(), iniBuku.getPenulis()));
                 }
-                else{
+                else{                       // Jika semua sesuai
                     Buku buku = SistakaNG.addBuku(inputJudul, inputPenulis, inputPenerbit, inputKat, stokBuku);
                     showInfo(String.format("Buku %s oleh  %s\nberhasil ditambahkan", buku.getJudul(), buku.getPenulis()));
                     main.setPanel("staf");

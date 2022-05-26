@@ -16,6 +16,8 @@ public class DetailAnggotaPanel extends SistakaPanel {
     JLabel detail;
     public DetailAnggotaPanel(HomeGUI main) {
         super(main);
+
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
 
         JLabel judul = new JLabel("Lihat Detail Anggota");
@@ -41,15 +43,12 @@ public class DetailAnggotaPanel extends SistakaPanel {
         add(label1);
         add(lihat);
         add(kembali);
-        
-        // area = new JTextArea(10, 20);
-        // area.setEditable(false);
 
+        // Menambahkan panel yang dapat di scroll jika dibutuhkan
         JPanel panel = new JPanel();
         detail = new JLabel();
         detail.setText("");
 
-        // JScrollPane scrollPanel = new JScrollPane(area);
         JScrollPane scrollPanel = new JScrollPane(panel);
         scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setBounds(50, 150, 350, 330);
@@ -61,7 +60,7 @@ public class DetailAnggotaPanel extends SistakaPanel {
                 String inputAnggota = (String) anggota.getSelectedItem();
                 Anggota iniAnggota = SistakaNG.findAnggota(inputAnggota);
                 if(inputAnggota != null){
-                    detail.setText(iniAnggota.detail());
+                    detail.setText(iniAnggota.detail());        // Memasukkan detail pada panel scroll
                 }
                 else{
                     showWarning("Silahkan memilih ID anggota!");

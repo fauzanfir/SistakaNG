@@ -8,11 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
 public class PembayaranPanel extends SistakaPanel {
     JTextField jumlah;
     public PembayaranPanel(HomeGUI main) {
         super(main);
+
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
 
         JLabel judul = new JLabel("Bayar Denda");
@@ -42,11 +43,11 @@ public class PembayaranPanel extends SistakaPanel {
         bayar.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent e){
             String inputJumlah = jumlah.getText();
-            if(!isNumeric(inputJumlah)){
+            if(!isNumeric(inputJumlah)){    // Jika jumlah inputnya meruapakan angka
                 showWarning("Jumlah bayar harus berupa angka");
             }
             else{
-                String info = SistakaNG.bayarDenda(Long.parseLong(inputJumlah));
+                String info = SistakaNG.bayarDenda(Long.parseLong(inputJumlah));        // Membayar denda dengan cast input menjadi long
                 showInfo(info);
             }
             }

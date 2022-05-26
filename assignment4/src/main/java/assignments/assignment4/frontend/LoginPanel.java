@@ -8,12 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// TODO: Implementasikan hal-hal yang diperlukan
+
 public class LoginPanel extends SistakaPanel {
     JTextField insertId;
     public LoginPanel(HomeGUI main){
         super(main);
 
+        // Meng-set layout, menambahkan, mengatur posisi, dan membuat komponen
         setLayout(null);
         setSize(450, 600);
 
@@ -44,19 +45,20 @@ public class LoginPanel extends SistakaPanel {
         add(insertId);
         add(login);
 
+        // Membuat aksi yang tepat setiap button di klik
         login.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 String inputUser = insertId.getText();
-                if(inputUser.equals("")){
+                if(inputUser.equals("")){           // Jika user tidak menginput apa-apa
                     showWarning("Harap masukkan ID Anda pada kotak di atas!");
                 }
-                else if(SistakaNG.handleLogin(inputUser) == null){
+                else if(SistakaNG.handleLogin(inputUser) == null){          // Jika user tidak ditemukan
                     showWarning(String.format("Pengguna dengnan ID %s tidak ditemukan", inputUser));
                 }
                 else{
                     Pengguna user = SistakaNG.handleLogin(inputUser);
                     main.setUser(user);
-                    if(user instanceof Staf){
+                    if(user instanceof Staf){           // Memisahkan untuk menu staf dan anggota
                         main.setPanel("staf");
                     }
                     else{
@@ -70,7 +72,7 @@ public class LoginPanel extends SistakaPanel {
 
     @Override
     public void refresh() {
-        insertId.setText("");
+        insertId.setText("");   // Mengosongkan TextField
     }
 
 }
