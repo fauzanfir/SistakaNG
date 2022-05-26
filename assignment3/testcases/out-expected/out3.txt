@@ -278,7 +278,7 @@ Judul: Penulis: Buku BukuB oleh Sib tidak ditemukan
 99. Logout
 Masukkan pilihan menu: 
 ---------- Hapus Buku ----------
-Judul: Penulis: Buku Bukub oleh Si B berhasil dihapus
+Judul: Penulis: Buku BukuB oleh Si B berhasil dihapus
 
 ================ Menu Staf ================
 
