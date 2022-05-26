@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public abstract class SistakaPanel extends JPanel {
+
     protected final HomeGUI main;
 
     public SistakaPanel(HomeGUI main) {
@@ -21,6 +22,14 @@ public abstract class SistakaPanel extends JPanel {
         } catch(NumberFormatException e){
             return false;
         }
+    }
+
+    public void showWarning(String text){
+        JOptionPane.showMessageDialog(this, text, "Warning!",JOptionPane.WARNING_MESSAGE);
+    }
+
+    public void showInfo(String text){
+        JOptionPane.showMessageDialog(this, text, "Info!",JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static boolean isDateValid(String tanggal){

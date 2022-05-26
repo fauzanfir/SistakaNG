@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class HomeGUI {
     private final CardLayout layout = new CardLayout();
-    private final JFrame frame;
+    private  final JFrame frame;
     private final JPanel mainPanel = new JPanel();
     private final Map<String, SistakaPanel> panelMap = new HashMap<>();
     private Pengguna user;
@@ -26,7 +26,7 @@ public class HomeGUI {
     }
 
     private void initGUI() {
-        frame.setSize(600, 1000);
+        frame.setSize(450, 600);
         SistakaPanel welcomePanel = new WelcomePanel(this);
         panelMap.put("welcome", welcomePanel);
         mainPanel.add(welcomePanel, "welcome");

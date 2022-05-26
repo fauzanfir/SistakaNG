@@ -1,6 +1,7 @@
 package assignments.assignment4;
 
 import assignments.assignment4.backend.SistakaNG;
+import assignments.assignment4.frontend.HomeGUI;
 
 import javax.swing.*;
 
@@ -14,7 +15,12 @@ public class SistakaNGUI {
         SistakaNG.registerStaf();
 
         // TODO: Tambahkan hal-hal lain yang diperlukan
+        frame.setSize(450, 600);
 
+        HomeGUI iniGui = new HomeGUI(frame);
+        iniGui.setPanel("welcome");
+
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 
