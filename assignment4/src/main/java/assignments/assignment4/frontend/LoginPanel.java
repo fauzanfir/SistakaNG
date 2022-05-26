@@ -47,7 +47,7 @@ public class LoginPanel extends SistakaPanel {
         login.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 String inputUser = insertId.getText();
-                if(inputUser == null){
+                if(inputUser.equals("")){
                     showWarning("Harap masukkan ID Anda pada kotak di atas!");
                 }
                 else if(SistakaNG.handleLogin(inputUser) == null){

@@ -116,7 +116,7 @@ public class StafHomePanel extends SistakaPanel {
 
         logout.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                main.setPanel("login");
+                main.setPanel("welcome");
             }
         });
 

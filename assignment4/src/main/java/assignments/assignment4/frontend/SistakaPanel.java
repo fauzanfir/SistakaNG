@@ -1,7 +1,10 @@
 package assignments.assignment4.frontend;
 
+import java.awt.Color;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.*;
 
 public abstract class SistakaPanel extends JPanel {
 
@@ -10,9 +13,17 @@ public abstract class SistakaPanel extends JPanel {
     public SistakaPanel(HomeGUI main) {
         this.main = main;
         setBorder(new EmptyBorder(10,10,10,10));
+        setBackground(new ColorUIResource(Color.decode("#E4CE7D")));
+        UIManager.put("Panel.background", new ColorUIResource(Color.decode("#E4CE7D")));
+        UIManager.put("Label.foreground", new ColorUIResource(Color.decode("#D0635C")));
+        UIManager.put("Button.foreground", new ColorUIResource(Color.decode("#E4CE7D")));
+        UIManager.put("TextField.foreground", new ColorUIResource(Color.decode("#D0635C")));
+        UIManager.put("ComboBox.foreground", new ColorUIResource(Color.decode("#D0635C")));
+
     }
 
     public abstract void refresh();
+
 
     // Utility
     public static boolean isNumeric(String str) {

@@ -33,8 +33,6 @@ public class WelcomePanel extends SistakaPanel {
         
         login.addActionListener((ActionListener) new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                //new LoginPanel(iniGui);
-                //this.setPanel("login");
                 homeGUI.setPanel("login");
             }
         });
